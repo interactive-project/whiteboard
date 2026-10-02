@@ -1,0 +1,892 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/interactive-project/whiteboard/blob/main/schemas/document.v1.schema.json",
+  "title": "Portable whiteboard document v1",
+  "type": "object",
+  "properties": {
+    "documentVersion": {
+      "const": "1.0.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+    },
+    "units": {
+      "const": "css-px"
+    },
+    "objects": {
+      "type": "array",
+      "maxItems": 1000,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+              },
+              "groupId": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "geometry": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  },
+                  "y": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1000000
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1000000
+                  },
+                  "rotation": {
+                    "type": "number",
+                    "minimum": -3.141592653589793,
+                    "maximum": 3.141592653589793
+                  },
+                  "scaleX": {
+                    "type": "number",
+                    "minimum": 0.01,
+                    "maximum": 100
+                  },
+                  "scaleY": {
+                    "type": "number",
+                    "minimum": 0.01,
+                    "maximum": 100
+                  }
+                },
+                "required": [
+                  "x",
+                  "y",
+                  "width",
+                  "height",
+                  "rotation",
+                  "scaleX",
+                  "scaleY"
+                ],
+                "additionalProperties": false
+              },
+              "type": {
+                "const": "shape"
+              },
+              "shape": {
+                "enum": [
+                  "rectangle",
+                  "ellipse",
+                  "diamond"
+                ]
+              },
+              "style": {
+                "type": "object",
+                "properties": {
+                  "stroke": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "fill": {
+                    "type": "string",
+                    "pattern": "^(?:#[0-9a-fA-F]{6}|transparent)$"
+                  },
+                  "strokeWidth": {
+                    "type": "number",
+                    "minimum": 0.1,
+                    "maximum": 100
+                  },
+                  "opacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                },
+                "required": [
+                  "stroke",
+                  "fill",
+                  "strokeWidth",
+                  "opacity"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "groupId",
+              "geometry",
+              "type",
+              "shape",
+              "style"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+              },
+              "groupId": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "geometry": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  },
+                  "y": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1000000
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1000000
+                  },
+                  "rotation": {
+                    "type": "number",
+                    "minimum": -3.141592653589793,
+                    "maximum": 3.141592653589793
+                  },
+                  "scaleX": {
+                    "type": "number",
+                    "minimum": 0.01,
+                    "maximum": 100
+                  },
+                  "scaleY": {
+                    "type": "number",
+                    "minimum": 0.01,
+                    "maximum": 100
+                  }
+                },
+                "required": [
+                  "x",
+                  "y",
+                  "width",
+                  "height",
+                  "rotation",
+                  "scaleX",
+                  "scaleY"
+                ],
+                "additionalProperties": false
+              },
+              "type": {
+                "const": "text"
+              },
+              "content": {
+                "$ref": "https://github.com/interactive-project/content-node/blob/main/schemas/content-node.v1.schema.json"
+              }
+            },
+            "required": [
+              "id",
+              "groupId",
+              "geometry",
+              "type",
+              "content"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+              },
+              "groupId": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "geometry": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  },
+                  "y": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1000000
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1000000
+                  },
+                  "rotation": {
+                    "type": "number",
+                    "minimum": -3.141592653589793,
+                    "maximum": 3.141592653589793
+                  },
+                  "scaleX": {
+                    "type": "number",
+                    "minimum": 0.01,
+                    "maximum": 100
+                  },
+                  "scaleY": {
+                    "type": "number",
+                    "minimum": 0.01,
+                    "maximum": 100
+                  }
+                },
+                "required": [
+                  "x",
+                  "y",
+                  "width",
+                  "height",
+                  "rotation",
+                  "scaleX",
+                  "scaleY"
+                ],
+                "additionalProperties": false
+              },
+              "type": {
+                "const": "image"
+              },
+              "content": {
+                "$ref": "https://github.com/interactive-project/content-node/blob/main/schemas/content-node.v1.schema.json"
+              }
+            },
+            "required": [
+              "id",
+              "groupId",
+              "geometry",
+              "type",
+              "content"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+              },
+              "groupId": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "geometry": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  },
+                  "y": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1000000
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1000000
+                  },
+                  "rotation": {
+                    "type": "number",
+                    "minimum": -3.141592653589793,
+                    "maximum": 3.141592653589793
+                  },
+                  "scaleX": {
+                    "type": "number",
+                    "minimum": 0.01,
+                    "maximum": 100
+                  },
+                  "scaleY": {
+                    "type": "number",
+                    "minimum": 0.01,
+                    "maximum": 100
+                  }
+                },
+                "required": [
+                  "x",
+                  "y",
+                  "width",
+                  "height",
+                  "rotation",
+                  "scaleX",
+                  "scaleY"
+                ],
+                "additionalProperties": false
+              },
+              "type": {
+                "const": "formula"
+              },
+              "content": {
+                "$ref": "https://github.com/interactive-project/content-node/blob/main/schemas/content-node.v1.schema.json"
+              }
+            },
+            "required": [
+              "id",
+              "groupId",
+              "geometry",
+              "type",
+              "content"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+              },
+              "groupId": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "geometry": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  },
+                  "y": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1000000
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1000000
+                  },
+                  "rotation": {
+                    "type": "number",
+                    "minimum": -3.141592653589793,
+                    "maximum": 3.141592653589793
+                  },
+                  "scaleX": {
+                    "type": "number",
+                    "minimum": 0.01,
+                    "maximum": 100
+                  },
+                  "scaleY": {
+                    "type": "number",
+                    "minimum": 0.01,
+                    "maximum": 100
+                  }
+                },
+                "required": [
+                  "x",
+                  "y",
+                  "width",
+                  "height",
+                  "rotation",
+                  "scaleX",
+                  "scaleY"
+                ],
+                "additionalProperties": false
+              },
+              "type": {
+                "const": "connector"
+              },
+              "from": {
+                "type": "object",
+                "properties": {
+                  "objectId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "x": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "y": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                },
+                "required": [
+                  "objectId",
+                  "x",
+                  "y"
+                ],
+                "additionalProperties": false
+              },
+              "to": {
+                "type": "object",
+                "properties": {
+                  "objectId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "x": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "y": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                },
+                "required": [
+                  "objectId",
+                  "x",
+                  "y"
+                ],
+                "additionalProperties": false
+              },
+              "directed": {
+                "type": "boolean"
+              },
+              "style": {
+                "type": "object",
+                "properties": {
+                  "stroke": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "fill": {
+                    "type": "string",
+                    "pattern": "^(?:#[0-9a-fA-F]{6}|transparent)$"
+                  },
+                  "strokeWidth": {
+                    "type": "number",
+                    "minimum": 0.1,
+                    "maximum": 100
+                  },
+                  "opacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                },
+                "required": [
+                  "stroke",
+                  "fill",
+                  "strokeWidth",
+                  "opacity"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "groupId",
+              "geometry",
+              "type",
+              "from",
+              "to",
+              "directed",
+              "style"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+              },
+              "groupId": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "geometry": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  },
+                  "y": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1000000
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1000000
+                  },
+                  "rotation": {
+                    "type": "number",
+                    "minimum": -3.141592653589793,
+                    "maximum": 3.141592653589793
+                  },
+                  "scaleX": {
+                    "type": "number",
+                    "minimum": 0.01,
+                    "maximum": 100
+                  },
+                  "scaleY": {
+                    "type": "number",
+                    "minimum": 0.01,
+                    "maximum": 100
+                  }
+                },
+                "required": [
+                  "x",
+                  "y",
+                  "width",
+                  "height",
+                  "rotation",
+                  "scaleX",
+                  "scaleY"
+                ],
+                "additionalProperties": false
+              },
+              "type": {
+                "const": "freehand"
+              },
+              "points": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 1000,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1000000
+                    },
+                    "y": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1000000
+                    },
+                    "pressure": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    }
+                  },
+                  "required": [
+                    "x",
+                    "y",
+                    "pressure"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "style": {
+                "type": "object",
+                "properties": {
+                  "stroke": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "fill": {
+                    "type": "string",
+                    "pattern": "^(?:#[0-9a-fA-F]{6}|transparent)$"
+                  },
+                  "strokeWidth": {
+                    "type": "number",
+                    "minimum": 0.1,
+                    "maximum": 100
+                  },
+                  "opacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                },
+                "required": [
+                  "stroke",
+                  "fill",
+                  "strokeWidth",
+                  "opacity"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "groupId",
+              "geometry",
+              "type",
+              "points",
+              "style"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+              },
+              "groupId": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "geometry": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  },
+                  "y": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1000000
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1000000
+                  },
+                  "rotation": {
+                    "type": "number",
+                    "minimum": -3.141592653589793,
+                    "maximum": 3.141592653589793
+                  },
+                  "scaleX": {
+                    "type": "number",
+                    "minimum": 0.01,
+                    "maximum": 100
+                  },
+                  "scaleY": {
+                    "type": "number",
+                    "minimum": 0.01,
+                    "maximum": 100
+                  }
+                },
+                "required": [
+                  "x",
+                  "y",
+                  "width",
+                  "height",
+                  "rotation",
+                  "scaleX",
+                  "scaleY"
+                ],
+                "additionalProperties": false
+              },
+              "type": {
+                "const": "group"
+              }
+            },
+            "required": [
+              "id",
+              "groupId",
+              "geometry",
+              "type"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+              },
+              "groupId": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,63}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "geometry": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  },
+                  "y": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1000000
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1000000
+                  },
+                  "rotation": {
+                    "type": "number",
+                    "minimum": -3.141592653589793,
+                    "maximum": 3.141592653589793
+                  },
+                  "scaleX": {
+                    "type": "number",
+                    "minimum": 0.01,
+                    "maximum": 100
+                  },
+                  "scaleY": {
+                    "type": "number",
+                    "minimum": 0.01,
+                    "maximum": 100
+                  }
+                },
+                "required": [
+                  "x",
+                  "y",
+                  "width",
+                  "height",
+                  "rotation",
+                  "scaleX",
+                  "scaleY"
+                ],
+                "additionalProperties": false
+              },
+              "type": {
+                "const": "activity"
+              },
+              "activity": {
+                "$ref": "https://github.com/interactive-project/protocol/blob/main/schemas/activity-spec.v1.schema.json"
+              }
+            },
+            "required": [
+              "id",
+              "groupId",
+              "geometry",
+              "type",
+              "activity"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "documentVersion",
+    "id",
+    "units",
+    "objects"
+  ],
+  "additionalProperties": false
+}

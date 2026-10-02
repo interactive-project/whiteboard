@@ -1,0 +1,332 @@
+{
+  "documentVersion": "1.0.0",
+  "id": "teachingBoard",
+  "units": "css-px",
+  "objects": [
+    {
+      "id": "lesson",
+      "type": "text",
+      "groupId": null,
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 100,
+        "height": 100,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "content": {
+        "kind": "text",
+        "schemaVersion": "1.0.0",
+        "language": "es",
+        "value": {
+          "kind": "localized-text",
+          "schemaVersion": "1.0.0",
+          "defaultLocale": "es",
+          "translations": {
+            "es": {
+              "text": "¿Cuánto es dos más dos?"
+            },
+            "en": {
+              "text": "What is two plus two?"
+            },
+            "ar": {
+              "text": "كم يساوي اثنان زائد اثنين؟"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "equation",
+      "type": "formula",
+      "groupId": null,
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 100,
+        "height": 100,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "content": {
+        "kind": "math",
+        "schemaVersion": "1.0.0",
+        "format": "tex",
+        "source": "\\\\frac{1}{2} + \\\\frac{1}{2} = 1",
+        "plainText": {
+          "kind": "localized-text",
+          "schemaVersion": "1.0.0",
+          "defaultLocale": "en",
+          "translations": {
+            "en": {
+              "text": "One half plus one half equals one."
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "illustration",
+      "type": "image",
+      "groupId": null,
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 100,
+        "height": 100,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "content": {
+        "kind": "image",
+        "schemaVersion": "1.0.0",
+        "asset": {
+          "kind": "asset-ref",
+          "schemaVersion": "1.0.0",
+          "id": "urn:assets:triangle",
+          "mediaType": "image/png",
+          "uri": "https://assets.example.org/triangle"
+        },
+        "alt": {
+          "kind": "localized-text",
+          "schemaVersion": "1.0.0",
+          "defaultLocale": "en",
+          "translations": {
+            "en": {
+              "text": "A right triangle with sides three, four and five."
+            }
+          }
+        },
+        "caption": {
+          "kind": "localized-text",
+          "schemaVersion": "1.0.0",
+          "defaultLocale": "en",
+          "translations": {
+            "en": {
+              "text": "Pythagoras example"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "diagramGroup",
+      "type": "group",
+      "groupId": null,
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 100,
+        "height": 100,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    },
+    {
+      "id": "componentA",
+      "type": "shape",
+      "groupId": "diagramGroup",
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 100,
+        "height": 100,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "shape": "rectangle",
+      "style": {
+        "stroke": "#000000",
+        "fill": "transparent",
+        "strokeWidth": 2,
+        "opacity": 1
+      }
+    },
+    {
+      "id": "componentB",
+      "type": "shape",
+      "groupId": "diagramGroup",
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 100,
+        "height": 100,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "shape": "ellipse",
+      "style": {
+        "stroke": "#000000",
+        "fill": "transparent",
+        "strokeWidth": 2,
+        "opacity": 1
+      }
+    },
+    {
+      "id": "link",
+      "type": "connector",
+      "groupId": "diagramGroup",
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 100,
+        "height": 100,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "from": {
+        "objectId": "componentA",
+        "x": 1,
+        "y": 0.5
+      },
+      "to": {
+        "objectId": "componentB",
+        "x": 0,
+        "y": 0.5
+      },
+      "directed": true,
+      "style": {
+        "stroke": "#000000",
+        "fill": "transparent",
+        "strokeWidth": 2,
+        "opacity": 1
+      }
+    },
+    {
+      "id": "stroke",
+      "type": "freehand",
+      "groupId": null,
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 100,
+        "height": 100,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "points": [
+        {
+          "x": 0,
+          "y": 0,
+          "pressure": 0.5
+        },
+        {
+          "x": 101,
+          "y": 100,
+          "pressure": 1
+        }
+      ],
+      "style": {
+        "stroke": "#000000",
+        "fill": "transparent",
+        "strokeWidth": 2,
+        "opacity": 1
+      }
+    },
+    {
+      "id": "quizGroup",
+      "type": "group",
+      "groupId": "diagramGroup",
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 100,
+        "height": 100,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    },
+    {
+      "id": "quiz",
+      "type": "activity",
+      "groupId": "quizGroup",
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 100,
+        "height": 100,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "activity": {
+        "protocolVersion": "1.0.0",
+        "id": "00000000-0000-4000-8000-000000000099",
+        "type": "interactive-project/quiz",
+        "activitySchemaVersion": "1.0.0",
+        "metadata": {
+          "title": "Nested quiz"
+        },
+        "config": {
+          "schemaVersion": "1.0.0",
+          "questions": [
+            {
+              "id": "q1",
+              "kind": "single-choice",
+              "prompt": {
+                "kind": "text",
+                "schemaVersion": "1.0.0",
+                "value": {
+                  "kind": "localized-text",
+                  "schemaVersion": "1.0.0",
+                  "defaultLocale": "en",
+                  "translations": {
+                    "en": {
+                      "text": "Select A"
+                    }
+                  }
+                }
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "content": {
+                    "kind": "text",
+                    "schemaVersion": "1.0.0",
+                    "value": {
+                      "kind": "localized-text",
+                      "schemaVersion": "1.0.0",
+                      "defaultLocale": "en",
+                      "translations": {
+                        "en": {
+                          "text": "A"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "b",
+                  "content": {
+                    "kind": "text",
+                    "schemaVersion": "1.0.0",
+                    "value": {
+                      "kind": "localized-text",
+                      "schemaVersion": "1.0.0",
+                      "defaultLocale": "en",
+                      "translations": {
+                        "en": {
+                          "text": "B"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
