@@ -13,7 +13,8 @@
     "docs",
     "fixtures",
     "README.md",
-    "geometry.js"
+    "geometry.js",
+    "editing"
   ],
   "exports": {
     ".": {
@@ -26,10 +27,15 @@
       "import": "./validation/index.js",
       "default": "./validation/index.js"
     },
-    "./schemas/document.v1.schema.json": "./schemas/document.v1.schema.json"
+    "./schemas/document.v1.schema.json": "./schemas/document.v1.schema.json",
+    "./editing": {
+      "types": "./editing/index.d.ts",
+      "import": "./editing/index.js",
+      "default": "./editing/index.js"
+    }
   },
   "scripts": {
-    "test": "node scripts/check-conformance.mjs"
+    "test": "node scripts/check-conformance.mjs && node scripts/check-editing.mjs"
   },
   "peerDependencies": {
     "@interactive-project/protocol": "0.1.0",
