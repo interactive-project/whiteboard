@@ -6,7 +6,7 @@ import {createRequire} from 'node:module';
 import {validateContent} from '@interactive-project/content-node/validation';
 import {validateActivitySpec} from '@interactive-project/protocol/validation';
 import {copyDocument} from '../index.js';
-const require=createRequire(import.meta.url),ajv=new Ajv2020({strict:true,allErrors:true,ownProperties:true});addFormats(ajv);
+const require=createRequire(import.meta.url),ajv=new Ajv2020({strict:true,allErrors:true,ownProperties:true,allowUnionTypes:true});addFormats(ajv);
 for(const name of ['@interactive-project/protocol/schemas/shared-content.v1.schema.json','@interactive-project/content-node/schemas/content-node.v1.schema.json','@interactive-project/protocol/schemas/activity-spec.v1.schema.json'])ajv.addSchema(JSON.parse(readFileSync(require.resolve(name))));
 const schema=ajv.compile(JSON.parse(readFileSync(new URL('../schemas/document.v1.schema.json',import.meta.url))));
 const error=(code,path)=>({code,path,severity:'error',message:'The whiteboard document violates its portable contract.'});
